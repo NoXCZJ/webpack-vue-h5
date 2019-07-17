@@ -1,7 +1,12 @@
-### 1.安装依赖包
+##### 1. 安装依赖包
+
 ```shell
-npm install postcss-import postcss-url autoprefixer --save-dev
+npm install
 ```
+
+#####  2.各个插件作用
+
+
 
 `postcss-import`:
 
@@ -18,14 +23,7 @@ autoprefixer插件是用来自动处理浏览器前缀的一个插件。如果�
 
 如此一来，你在编码时不再需要考虑任何浏览器前缀的问题，可以专心撸码。这也是PostCSS最常用的一个插件之一。
 
-### 2.vw的布局兼容方案
-
-```shell
-npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg  postcss-viewport-units cssnano --S   
-```
-```shell
-npm install postcss-preset-env --save-dev
-```
+###### vw的布局兼容方案
 
 `postcss.config.js`：
 ```js
@@ -83,7 +81,12 @@ module.exports = {
           { loader: 'postcss-loader', options: {
             ident: 'postcss',
             plugins: () => [
-              postcssPresetEnv(/* pluginOptions */)
+              postcssPresetEnv({
+                autoprefixer: {
+                  flexbox: "no-2009"
+                },
+                stage: 3
+              })
             ]
           } }
         ]
@@ -413,3 +416,6 @@ img {
     background: green;
 }
 ```
+
+
+
