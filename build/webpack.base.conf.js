@@ -3,7 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const postcssPresetEnv = require("postcss-preset-env");
+// const postcssPresetEnv = require("postcss-preset-env");
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -87,14 +87,14 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: () => [
-                postcssPresetEnv({
-                  autoprefixer: {
-                    flexbox: "no-2009"
-                  },
-                  stage: 3
-                })
-              ]
+              // plugins: () => [
+              //   postcssPresetEnv({
+              //     autoprefixer: {
+              //       flexbox: "no-2009"
+              //     },
+              //     stage: 3
+              //   })
+              // ]
             }
           }
         ]
