@@ -3,6 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const postcssPresetEnv = require("postcss-preset-env");
 
 function resolve(dir) {
@@ -156,6 +157,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve("../public/index.html")
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../dist')
+      }
+    ]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]

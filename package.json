@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js",
     "build": "webpack --config ./build/webpack.prod.conf.js",
-    "server": "http-server ./dist -p 8089 -o"
+    "server": "http-server ./dist -p 8089 -o",
+    "analyze": "cross-env ANALYZE=1 webpack --config ./build/webpack.prod.conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "cache-loader": "^4.0.1",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.3",
+    "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "cssnano-preset-advanced": "^4.0.7",
     "dart-sass": "^1.22.5",

@@ -5,8 +5,40 @@ const webpackConfig = require('./webpack.base.conf.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin= require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { ANALYZE } = process.env;
+
+const plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
+  }),
+  new MiniCssExtractPlugin({
+    filename: 'css/[name].[contenthash:8].css',
+    chunkFilename: 'css/[name].[contenthash:8].css'
+  }),
+  new OptimizeCssnanoPlugin({
+    sourceMap: true,
+    cssnanoOptions: {
+      preset: [
+        'default',
+        {
+          mergeLonghand: false,
+          cssDeclarationSorter: false
+        }
+      ]
+    }
+  }),
+  new CleanWebpackPlugin()
+];
+
+if (ANALYZE) {
+  plugins.push(new BundleAnalyzerPlugin({
+    analyzerMode: 'static'
+  }));
+}
+
 module.exports = merge(webpackConfig, {
   mode: 'production',
   devtool: '#source-map',
@@ -44,7 +76,7 @@ module.exports = merge(webpackConfig, {
             }
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
           {
             loader: 'sass-loader',
@@ -56,37 +88,5 @@ module.exports = merge(webpackConfig, {
       },
     ]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].css'
-    }),
-    new OptimizeCssnanoPlugin({
-      sourceMap: true,
-      cssnanoOptions: {
-        preset: [
-          'default',
-          {
-            mergeLonghand: false,
-            cssDeclarationSorter: false
-          }
-        ]
-      }
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, '../dist')
-      }
-    ]),
-    new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static'
-    })
-  ]
+  plugins: plugins
 })
