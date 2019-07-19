@@ -28,7 +28,8 @@ module.exports = {
       exclude: [],
     },
     "postcss-viewport-units": {
-      filterFile: file => !file.includes('node_modules')
+      // filterFile: file => !file.includes('node_modules'),
+      silence: true // if true, will not print warning even though there is a content property. it's false by default.
     },
     cssnano: {
       preset: "advanced",
