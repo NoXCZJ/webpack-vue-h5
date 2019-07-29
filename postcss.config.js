@@ -32,7 +32,13 @@ module.exports = {
       silence: true // if true, will not print warning even though there is a content property. it's false by default.
     },
     cssnano: {
-      preset: "advanced",
+      preset: [
+        'advanced',
+        {
+          // 避免 cssnano 重新计算 z-index
+          zindex: false,
+        }
+      ],
       autoprefixer: false,
       "postcss-zindex": false
     }

@@ -4,7 +4,8 @@ const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.conf.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin= require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { ANALYZE } = process.env;
 
@@ -59,7 +60,24 @@ module.exports = merge(webpackConfig, {
           reuseExistingChunk: true
         }
       }
-    }
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        // test: /\.js(\?.*)?$/i,
+        uglifyOptions: {
+          // sourceMap: true,
+          //删除注释
+          output:{
+            comments: false
+          },
+          //删除console 和 debugger  删除警告
+          compress:{
+            drop_debugger: true,
+            drop_console: true
+          }
+        },
+      }),
+    ],
   },
   module: {
     rules: [
