@@ -8,5 +8,12 @@ module.exports = {
       }
     ]
   ],
-  plugins: ["@babel/plugin-syntax-dynamic-import"]
+  plugins: [
+    "@babel/plugin-syntax-dynamic-import",
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
 };

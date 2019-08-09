@@ -29,7 +29,17 @@ module.exports = {
     hot: true,
     port: 3000,
     contentBase: "./dist",
-    open: true
+    open: true,
+    // proxy: {
+    //   '/live/v1': {
+    //     target: 'http://192.168.1.162:8080/live/v1/',
+    //     secure: true, // 如果是https接口，需要配置这个参数为true
+    //     changeOrigin: true, // 如果接口跨域，需要进行这个参数配置为true
+    //     pathRewrite: {
+    //       '^/live/v1': ''
+    //     }
+    //   }
+    // }
   },
   resolve: {
     alias: {
@@ -148,14 +158,24 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      // {
+      //   test: /\.(vue|js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   exclude:/node_modules/,
+      //   enforce: 'pre'     //预处理
+      // }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
-      template: resolve("../public/index.html")
+      template: resolve("../public/index.html"),
+      favicon: path.resolve(__dirname, '../public/favicon.ico'),
+      minify: {
+        collapseWhitespace: true,//删除空格、换行
+      },
     }),
     new CopyWebpackPlugin([
       {

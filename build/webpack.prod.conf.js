@@ -7,12 +7,13 @@ const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin= require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const { ANALYZE } = process.env;
+const { ANALYZE, PROJECT_ENV } = process.env;
 
 const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
+      NODE_ENV: JSON.stringify('production'),
+      ENV: JSON.stringify(PROJECT_ENV)
     }
   }),
   new MiniCssExtractPlugin({
