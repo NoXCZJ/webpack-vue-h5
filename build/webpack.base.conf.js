@@ -171,6 +171,7 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // 配置忽略规则
 
     new HtmlWebpackPlugin({
       template: resolve("../public/index.html"),

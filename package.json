@@ -45,6 +45,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
+    "postcss-px-to-relative-unit": "^1.0.1",
     "postcss-url": "^8.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
