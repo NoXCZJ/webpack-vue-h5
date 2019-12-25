@@ -23,23 +23,23 @@ module.exports = {
     // 生成的chunk名称
     chunkFilename: "js/[name].[hash:8].js",
     // 资源引用的路径
-    publicPath: "/"
+    publicPath: "/vue-h5-v1/"
   },
   devServer: {
     hot: true,
     port: 3000,
+    host: '0.0.0.0',
     contentBase: "./dist",
-    open: true,
-    // proxy: {
-    //   '/live/v1': {
-    //     target: 'http://192.168.1.162:8080/live/v1/',
-    //     secure: true, // 如果是https接口，需要配置这个参数为true
-    //     changeOrigin: true, // 如果接口跨域，需要进行这个参数配置为true
-    //     pathRewrite: {
-    //       '^/live/v1': ''
-    //     }
-    //   }
-    // }
+    proxy: {
+      '/test': {
+        target: 'http://192.168.1.90:8080/test',
+        secure: true, // 如果是https接口，需要配置这个参数为true
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置为true
+        pathRewrite: {
+          '^/test': ''
+        }
+      }
+    }
   },
   resolve: {
     alias: {
@@ -116,7 +116,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              limit: 4096,
+              limit: 10000,
               fallback: {
                 loader: "file-loader",
                 options: {

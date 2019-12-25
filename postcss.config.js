@@ -28,7 +28,6 @@ module.exports = {
       },
       stage: 3
     },
-    // 用“postcss-px-to-relative-unit”替代
     // 'postcss-px-to-viewport': {
     //   unitToConvert: 'px',
     //   viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
@@ -57,4 +56,4 @@ module.exports = {
     }
 
   }
-}
+};

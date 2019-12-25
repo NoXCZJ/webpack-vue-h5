@@ -18,7 +18,8 @@ const plugins = [
   }),
   new MiniCssExtractPlugin({
     filename: 'css/[name].[contenthash:8].css',
-    chunkFilename: 'css/[name].[contenthash:8].css'
+    chunkFilename: 'css/[name].[contenthash:8].css',
+    allChunks: true
   }),
   new OptimizeCssnanoPlugin({
     sourceMap: true,
@@ -66,7 +67,7 @@ module.exports = merge(webpackConfig, {
       new UglifyJsPlugin({
         // test: /\.js(\?.*)?$/i,
         uglifyOptions: {
-          // sourceMap: true,
+          sourceMap: true,
           //删除注释
           output:{
             comments: false
@@ -75,7 +76,9 @@ module.exports = merge(webpackConfig, {
           compress:{
             drop_debugger: true,
             drop_console: true
-          }
+          },
+          parallel: true,
+          safari10: true
         },
       }),
     ],

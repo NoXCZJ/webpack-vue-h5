@@ -8,13 +8,14 @@
         <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404"> -->
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+        <div class="bullshit__oops">404!</div>
+        <div class="bullshit__info">她他会
+          <!-- <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a> -->
         </div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-        <a href="" class="bullshit__return-home">Back to home</a>
+        <!-- <div class="bullshit__info">请检查您输入的网址是否正确，或点击下面的按钮返回首页。</div> -->
+        <div class="bullshit__info">请检查您输入的网址是否正确</div>
+        <!-- <a href="" class="bullshit__return-home">返回首页</a> -->
       </div>
     </div>
   </div>
@@ -25,7 +26,7 @@ export default {
   name: 'Page404',
   computed: {
     message() {
-      return 'The webmaster said that you can not enter this page...'
+      return '找不到该页面了...'
     }
   }
 }
@@ -40,7 +41,7 @@ export default {
 }
 .wscn-http404 {
   position: relative;
-  width: 1200px;
+  width: 750px;
   padding: 0 50px;
   overflow: hidden;
   .pic-404 {
@@ -157,13 +158,13 @@ export default {
   .bullshit {
     position: relative;
     float: left;
-    width: 300px;
+    width: 500px;
     padding: 30px 0;
     overflow: hidden;
     &__oops {
-      font-size: 32px;
+      font-size: 60px;
       font-weight: bold;
-      line-height: 40px;
+      line-height: 60px;
       color: #1482f0;
       opacity: 0;
       margin-bottom: 20px;
@@ -185,7 +186,7 @@ export default {
     }
     &__info {
       font-size: 13px;
-      line-height: 21px;
+      line-height: 40px;
       color: grey;
       opacity: 0;
       margin-bottom: 30px;
@@ -197,15 +198,15 @@ export default {
     &__return-home {
       display: block;
       float: left;
-      width: 110px;
-      height: 36px;
+      width: 140px;
+      height: 50px;
       background: #1482f0;
       border-radius: 100px;
       text-align: center;
       color: #ffffff;
       opacity: 0;
       font-size: 14px;
-      line-height: 36px;
+      line-height: 50px;
       cursor: pointer;
       animation-name: slideUp;
       animation-duration: 0.5s;

@@ -1,24 +1,25 @@
 <template>
   <div class="index-container">
-    首页
+    vue-h5
   </div>
 </template>
 
 <script>
 export default {
-  name: 'index',
+  name: 'Index',
   components: { },
   data() {
-    return {}
+    return {
+      tets: ''
+    };
   },
   watch: {},
   created() {},
+  mounted() {},
   methods: {}
-}
+};
 </script>
 
 <style scoped lang="scss">
-  .index-container {
-    font-size: 10px;
-  }
+
 </style>
