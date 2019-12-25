@@ -32,8 +32,16 @@ export const browser = {
   language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
 
-export function getRandom(min, max) { // 获取随机整数
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+/**
+ * 产生min到max的随机整数
+ * @param min 最小值
+ * @param max 最大值
+ * @returns {Number} 随机整数
+ */
+export function randomInt(min, max) { // 获取随机整数
+  return parseInt(min + Math.random() * (max - min));
+}
+
+export function randomFloat(min, max) {
+  return min + Math.random() * (max - min);
 }
