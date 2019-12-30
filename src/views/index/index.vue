@@ -2,97 +2,49 @@
   <div id="index" class="index-container">
     <canvas id="canvas" class="canvas"></canvas>
     <div class="index-box">
-      <img class="ice" src="../../assets/images/ice.png" />
+      <img class="ice" src="../../assets/images/index/ice.png" />
+      <img class="title-img" src="../../assets/images/index/title@2x.png" />
+      <!-- 戴帽子 -->
+      <div id="fabricBox" class="fabric-container"></div>
+      <!-- 选帽子 -->
+      <div class="hat-container">
+        <div class="hat-item">
+          <img class="hat-img" src="../../assets/images/index/hat6@3x.png" />
+        </div>
+      </div>
+      <!-- 操作按钮 -->
+      <div class="opr-container">
+        <img class="opr-btn" src="../../assets/images/index/btn1@2x.png" />
+        <img class="opr-btn" src="../../assets/images/index/btn2@2x.png" />
+      </div>
+      <img class="bottom-ad" src="../../assets/images/index/download@2x.png" />
     </div>
   </div>
 </template>
 
 <script>
-import { randomFloat } from '@/utils/util';
-import snowflake from '@/assets/images/snowflake.png';
+import snowflake from '@/assets/images/index/snowflake.png';
+import SnowCanvas from './utils/snow';
 export default {
   name: 'Index',
   components: { },
   data() {
-    return {
-      tets: ''
-    };
+    return {};
   },
   watch: {},
   created() {},
   mounted() {
-    const Canvas = function(target, width, height) {
-      this.width = width;
-      this.height = height;
-      this.target = target;
-    };
-    Canvas.prototype = {
-      init: function() {
-        // const oC = document.createElement('canvas');
-        const oC = document.getElementById('canvas');
-        oC.setAttribute('width', this.width);
-        oC.setAttribute('height', this.height);
-        oC.style.background = 'transparent';
-        this.target.appendChild(oC);
-        return oC;
-      }
-    };
     const curWinWidth = document.body.offsetWidth;
     const curWinHeight = document.body.offsetHeight;
-    const oCanvas = new Canvas(document.getElementById('index'), curWinWidth, curWinHeight);
-    const oC = oCanvas.init();
-    const oGc = oC.getContext('2d');
-
-    const Snow = function() {};
-
-    Snow.prototype = {
-      init: function() {
-        this.x = randomFloat(0, oC.width);
-        this.r = randomFloat(10, 25);
-        this.y = -this.r;
-        this.vy = randomFloat(3, 5);
-        const wind = randomFloat(-1, 1);
-        this.wind = wind;
-        this.vx = wind + randomFloat(0, 0.3 * wind);
-        this.globalAlpha = randomFloat(0.6, 1);
-      },
-      draw: function(cxt, img) {
-        cxt.drawImage(img, this.x, this.y, this.r, this.r);
-        cxt.globalAlpha = this.globalAlpha;
-        cxt.shadowBlur = randomFloat(2, 5);
-        cxt.shadowColor = 'white';
-        this.update(cxt);
-      },
-      update: function(cxt) {
-        if (this.y < oC.height - this.r) {
-          this.y += this.vy;
-          this.x += this.wind + randomFloat(0, 0.3 * this.wind);
-        } else {
-          this.init();
-        }
-      }
-    };
-
-    const img = new Image();
-    img.onload = () => {
-      const snow = [];
-      for (let i = 0; i < 15; i++) {
-        setTimeout(() => {
-          const oSnow = new Snow();
-          oSnow.init();
-          snow.push(oSnow);
-        }, 1000 * i);
-      }
-
-      (function move() {
-        oGc.clearRect(0, 0, oC.width, oC.height);
-        for (let i = 0; i < snow.length; i++) {
-          snow[i].draw(oGc, img);
-        }
-        requestAnimationFrame(move);
-      })();
-    };
-    img.src = snowflake;
+    new SnowCanvas({
+      target: '#canvas',
+      width: curWinWidth,
+      height: curWinHeight,
+      icon: snowflake
+    });
+    const fabricBox = document.getElementById('fabricBox');
+    fabricBox.style.width = fabricBox.offsetHeight + 'px';
+    console.log(fabricBox.offsetHeight);
   },
   methods: {}
 };
@@ -102,7 +54,8 @@ export default {
 .index-container {
   display: flex;
   min-height: 100vh;
-  background: #13192F url('../../assets/images/bottom_ice.png') no-repeat left bottom;
+  background: #13192F url('../../assets/images/index/bottom_ice.png') no-repeat;
+  background-position: left 1048px;
   background-size: 750px 424px;
   .canvas {
     position: absolute;
@@ -113,9 +66,76 @@ export default {
   .index-box {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .ice {
+      position: fixed;
       width: 100vw;
+      top: 0;
+      left: 0;
+    }
+    .title-img {
+      width: 750px;
+      height: 180px;
+      margin-top: 32px;
+      flex-shrink: 0;
+    }
+    .fabric-container {
+      flex-grow: 1;
+      margin-top: 14px;
+      max-width: 65.3333vw;
+      max-height: 65.3333vw;
+      background: linear-gradient(135deg,rgba(193,255,254,1) 0%,rgba(187,185,255,1) 100%);
+      border-radius: 32px;
+    }
+    .hat-container {
+      margin: 32px 0 0 60px;
+      display: flex;
+      .hat-item {
+        width: 100px;
+        height: 100px;
+        margin-right: 60px;
+        background:rgba(255,255,255,0.17);
+        border-radius:16px;
+        .hat-img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .opr-container {
+      margin-top: 6px;
+      .opr-btn {
+        width: 270px;
+        height: 128px;
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
+      }
+    }
+    .bottom-ad {
+      margin: 18px 0 16px 0;
+      width: 550px;
+      height: 142px;
+      flex-shrink: 0;
     }
   }
 }
+@media all and (min-height: 812px) {
+  .index-container {
+    background-position: left bottom;
+  }
+}
+@media all and (max-height: 480px) {
+  .index-container {
+    background-position: left 850px;
+  }
+}
+// @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+//   .index-container {
+//     margin-bottom: constant(safe-area-inset-bottom);
+//     margin-bottom: env(safe-area-inset-bottom);
+//   }
+// }
 </style>

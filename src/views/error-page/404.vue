@@ -26,10 +26,10 @@ export default {
   name: 'Page404',
   computed: {
     message() {
-      return '找不到该页面了...'
+      return '找不到该页面了...';
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
