@@ -81,7 +81,7 @@ export default {
           const oSnow = new Snow();
           oSnow.init();
           snow.push(oSnow);
-        }, 500 * i);
+        }, 1000 * i);
       }
 
       (function move() {

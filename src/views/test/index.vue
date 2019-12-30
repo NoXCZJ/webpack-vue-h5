@@ -25,7 +25,7 @@ export default {
     },
     handleCheckUA() {
       alert(navigator.userAgent);
-      alert(`是否在她他会APP”中==》${browser.versions.myApp}`);
+      alert(`是否在myAPP”中==》${browser.versions.myApp}`);
     },
     handleH5URL() {
       this.$router.push({ path: '/index' });

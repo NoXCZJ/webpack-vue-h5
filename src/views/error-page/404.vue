@@ -9,7 +9,7 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">404!</div>
-        <div class="bullshit__info">她他会
+        <div class="bullshit__info">我的页面
           <!-- <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a> -->
         </div>
         <div class="bullshit__headline">{{ message }}</div>
